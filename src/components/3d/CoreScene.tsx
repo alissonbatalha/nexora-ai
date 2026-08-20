@@ -161,7 +161,7 @@ function Orbit({
   rotation: [number, number, number];
   radius: number;
 }) {
-  const ref = useRef<THREE.Line>(null);
+  const ref = useRef<THREE.Group>(null);
 
   const points = useMemo(() => {
     const result: THREE.Vector3[] = [];
@@ -193,16 +193,19 @@ function Orbit({
   });
 
   return (
+  <group
+    ref={ref}
+    rotation={rotation}
+  >
     <Line
-      ref={ref}
       points={points}
-      rotation={rotation}
       color="#c9ccdf"
       transparent
       opacity={0.19}
       lineWidth={0.6}
     />
-  );
+  </group>
+);
 }
 
 function CoreSystem() {
